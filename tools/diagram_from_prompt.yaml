@@ -1,0 +1,43 @@
+identity:
+  name: diagram_from_prompt
+  author: chartquery
+  label:
+    en_US: Diagram From Prompt
+description:
+  human:
+    en_US: Describe a diagram in plain words; ChartQuery's AI writes it in Mermaid, D2, PlantUML or Graphviz and renders it. 10 credits.
+  llm: 'Builds a diagram from a plain-words description (a process, an architecture, a sequence of calls, a database schema): ChartQuery''s AI writes it in Mermaid, D2, PlantUML or Graphviz and returns the image with public links.'
+parameters:
+- name: prompt
+  type: string
+  required: true
+  label:
+    en_US: Description
+  human_description:
+    en_US: 'What to draw: the kind of diagram, the entities and how they connect. Up to 1000 characters.'
+  llm_description: 'What to draw: the kind of diagram, the entities and how they connect. Up to 1000 characters.'
+  form: llm
+- name: language
+  type: select
+  required: false
+  label:
+    en_US: Language
+  options:
+  - value: mermaid
+    label:
+      en_US: Mermaid
+  - value: d2
+    label:
+      en_US: D2
+  - value: plantuml
+    label:
+      en_US: PlantUML
+  - value: graphviz
+    label:
+      en_US: Graphviz
+  human_description:
+    en_US: Preferred diagram language. The AI chooses when empty.
+  form: form
+extra:
+  python:
+    source: tools/diagram_from_prompt.py

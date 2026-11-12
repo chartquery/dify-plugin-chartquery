@@ -1,0 +1,76 @@
+identity:
+  name: barcode
+  author: chartquery
+  label:
+    en_US: Barcode
+description:
+  human:
+    en_US: 'Generate a barcode: EAN-13, UPC-A, Code 128, ITF-14, GS1-128 and more. 3 credits.'
+  llm: Generates a barcode and returns the image with public links. type is code128 by default, or ean13, ean8, upca, upce for retail products, code39, code93, itf14 or gs1-128.
+parameters:
+- name: data
+  type: string
+  required: true
+  label:
+    en_US: Value
+  human_description:
+    en_US: The value to encode, for example 4006381333931 for EAN-13.
+  llm_description: The value to encode, for example 4006381333931 for EAN-13.
+  form: llm
+- name: type
+  type: select
+  required: false
+  label:
+    en_US: Type
+  default: code128
+  options:
+  - value: code128
+    label:
+      en_US: Code 128
+  - value: ean13
+    label:
+      en_US: EAN-13
+  - value: ean8
+    label:
+      en_US: EAN-8
+  - value: upca
+    label:
+      en_US: UPC-A
+  - value: upce
+    label:
+      en_US: UPC-E
+  - value: code39
+    label:
+      en_US: Code 39
+  - value: code93
+    label:
+      en_US: Code 93
+  - value: itf14
+    label:
+      en_US: ITF-14
+  - value: gs1-128
+    label:
+      en_US: GS1-128
+  human_description:
+    en_US: Barcode type. The default is Code 128.
+  llm_description: 'Barcode type: code128 (default), ean13, ean8, upca, upce, code39, code93, itf14 or gs1-128.'
+  form: llm
+- name: format
+  type: select
+  required: false
+  label:
+    en_US: Format
+  default: png
+  options:
+  - value: png
+    label:
+      en_US: PNG
+  - value: svg
+    label:
+      en_US: SVG
+  human_description:
+    en_US: Image format. PNG shows everywhere; SVG stays sharp at any size.
+  form: form
+extra:
+  python:
+    source: tools/barcode.py

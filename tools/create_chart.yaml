@@ -1,0 +1,22 @@
+identity:
+  name: create_chart
+  author: chartquery
+  label:
+    en_US: Create Chart
+description:
+  human:
+    en_US: Render a Chart.js v4 chart (bar, line, pie, doughnut, radar, scatter…) from its JSON config. 5 credits.
+  llm: Renders a Chart.js v4 chart from its full JSON config, for example {"type":"bar","data":{"labels":["Jan","Feb"],"datasets":[{"label":"Sales","data":[12,19]}]}}, and returns the image with public links. Use it when you have exact data to draw.
+parameters:
+- name: config
+  type: string
+  required: true
+  label:
+    en_US: Chart Config
+  human_description:
+    en_US: 'The Chart.js v4 config as JSON: type, data and options.'
+  llm_description: The Chart.js v4 config as a JSON object with type, data (labels and datasets) and optional options.
+  form: llm
+extra:
+  python:
+    source: tools/create_chart.py

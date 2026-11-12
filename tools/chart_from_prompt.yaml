@@ -1,0 +1,39 @@
+identity:
+  name: chart_from_prompt
+  author: chartquery
+  label:
+    en_US: Chart From Prompt
+description:
+  human:
+    en_US: Describe a chart in plain words, optionally with the raw data; ChartQuery's AI builds it. 10 credits.
+  llm: 'Builds a chart from a plain-words description (type, topic, colors, style) and optional raw data as CSV, JSON or text such as ''Jan: 12400, Feb: 18900''. ChartQuery''s AI picks the chart type and layout. Returns the image with public links.'
+parameters:
+- name: prompt
+  type: string
+  required: true
+  label:
+    en_US: Description
+  human_description:
+    en_US: 'What to chart: type, topic, colors, style. Up to 1000 characters.'
+  llm_description: 'What to chart: type, topic, colors, style. Up to 1000 characters.'
+  form: llm
+- name: raw_data
+  type: string
+  required: false
+  label:
+    en_US: Data
+  human_description:
+    en_US: 'Optional data as CSV, JSON or text, for example Jan: 12400, Feb: 18900.'
+  llm_description: 'Optional data as CSV, JSON or text, for example Jan: 12400, Feb: 18900.'
+  form: llm
+- name: title
+  type: string
+  required: false
+  label:
+    en_US: Title
+  human_description:
+    en_US: Chart title, instead of the one the AI picks.
+  form: form
+extra:
+  python:
+    source: tools/chart_from_prompt.py

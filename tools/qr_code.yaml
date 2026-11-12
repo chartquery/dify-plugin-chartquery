@@ -1,0 +1,55 @@
+identity:
+  name: qr_code
+  author: chartquery
+  label:
+    en_US: QR Code
+description:
+  human:
+    en_US: Generate a QR code for a link, email, phone number, Wi-Fi network or any text. 3 credits.
+  llm: Generates a QR code and returns the image with public links. data can be a URL, mailto:, tel:, SMSTO:<number>:<text>, WIFI:T:WPA;S:<network>;P:<password>;; or any text.
+parameters:
+- name: data
+  type: string
+  required: true
+  label:
+    en_US: Content
+  human_description:
+    en_US: 'The text to encode: a URL, mailto:, tel:, a Wi-Fi string or any text.'
+  llm_description: 'The text to encode: a URL, mailto:, tel:, a Wi-Fi string or any text.'
+  form: llm
+- name: size
+  type: number
+  required: false
+  label:
+    en_US: Size
+  default: 300
+  human_description:
+    en_US: Width and height in pixels. The default is 300.
+  form: form
+- name: color
+  type: string
+  required: false
+  label:
+    en_US: Color
+  human_description:
+    en_US: 'Dot color as hex, for example #0f172a. The default is black.'
+  form: form
+- name: format
+  type: select
+  required: false
+  label:
+    en_US: Format
+  default: png
+  options:
+  - value: png
+    label:
+      en_US: PNG
+  - value: svg
+    label:
+      en_US: SVG
+  human_description:
+    en_US: Image format. PNG shows everywhere; SVG stays sharp at any size.
+  form: form
+extra:
+  python:
+    source: tools/qr_code.py

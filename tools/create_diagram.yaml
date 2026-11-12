@@ -1,0 +1,76 @@
+identity:
+  name: create_diagram
+  author: chartquery
+  label:
+    en_US: Create Diagram
+description:
+  human:
+    en_US: 'Render a diagram from its source code: Mermaid, D2, PlantUML, Graphviz and more. 5 credits.'
+  llm: Renders a diagram from its source code and returns the image with public links. language is mermaid by default (flowcharts, sequence, class, state, Gantt and ER diagrams), or d2, plantuml, graphviz, bpmn, dbml, erd, nomnoml or excalidraw.
+parameters:
+- name: source
+  type: string
+  required: true
+  label:
+    en_US: Source
+  human_description:
+    en_US: The diagram source code, for example graph TD; A[Start] --> B[End]
+  llm_description: The diagram source code, for example graph TD; A[Start] --> B[End]
+  form: llm
+- name: language
+  type: select
+  required: false
+  label:
+    en_US: Language
+  default: mermaid
+  options:
+  - value: mermaid
+    label:
+      en_US: Mermaid
+  - value: d2
+    label:
+      en_US: D2
+  - value: plantuml
+    label:
+      en_US: PlantUML
+  - value: graphviz
+    label:
+      en_US: Graphviz
+  - value: bpmn
+    label:
+      en_US: BPMN
+  - value: dbml
+    label:
+      en_US: DBML
+  - value: erd
+    label:
+      en_US: ERD
+  - value: nomnoml
+    label:
+      en_US: nomnoml
+  - value: excalidraw
+    label:
+      en_US: Excalidraw
+  human_description:
+    en_US: The diagram language. The default is Mermaid.
+  llm_description: 'Diagram language: mermaid (default), d2, plantuml, graphviz, bpmn, dbml, erd, nomnoml or excalidraw.'
+  form: llm
+- name: format
+  type: select
+  required: false
+  label:
+    en_US: Format
+  default: png
+  options:
+  - value: png
+    label:
+      en_US: PNG
+  - value: svg
+    label:
+      en_US: SVG
+  human_description:
+    en_US: Image format. PNG shows everywhere; SVG stays sharp at any size.
+  form: form
+extra:
+  python:
+    source: tools/create_diagram.py
